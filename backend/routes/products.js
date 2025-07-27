@@ -164,13 +164,38 @@ router.post('/', requireAuth, requireAdmin, async (req, res) => {
 // Update product (admin only)
 router.put('/:id', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(
-      req.params.id, 
-      req.body, 
+    const prevProduct = await Product.findById(req.params.id);
+    if (!prevProduct) return res.status(404).json({ message: 'Product not found' });
+
+    const updated = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
       { new: true, runValidators: true }
     );
-    if (!product) return res.status(404).json({ message: 'Product not found' });
-    res.json(product);
+
+    // Auto deactivate if stock <=0
+    if (updated.stock !== undefined && updated.stock <= 0 && updated.active) {
+      updated.active = false;
+      await updated.save();
+    }
+
+    // If stock went from 0 to >0, notify waitlist
+    if (prevProduct.stock === 0 && updated.stock > 0) {
+      const Waitlist = require('../models/Waitlist');
+      const { sendRestockNotification } = require('../utils/mailer');
+
+      const entries = await Waitlist.find({ product: updated._id });
+      for (const entry of entries) {
+        try {
+          await sendRestockNotification(entry.email, updated);
+        } catch (emailErr) {
+          console.error('Restock email error:', emailErr);
+        }
+      }
+      await Waitlist.deleteMany({ product: updated._id });
+    }
+
+    res.json(updated);
   } catch (err) {
     console.error('Update product error:', err);
     res.status(500).json({ message: 'Server error' });

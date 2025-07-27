@@ -36,6 +36,8 @@ app.use('/api/payment', require('./routes/payment'));
 app.use('/api/coupons', require('./routes/coupons'));
 // Wishlist routes
 app.use('/api/wishlist', require('./routes/wishlist'));
+// Waitlist routes
+app.use('/api/waitlist', require('./routes/waitlist'));
 // Newsletter routes
 app.use('/api/newsletter', require('./routes/newsletter'));
 // Register reviews routes

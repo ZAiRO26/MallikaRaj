@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { productsAPI, reviewsAPI } from '../../utils/api';
+import { waitlistAPI } from '../../utils/api';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
@@ -17,6 +18,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ productId, onBackClick })
   const [reviewText, setReviewText] = useState('');
   const [rating, setRating] = useState(5);
   const [submitting, setSubmitting] = useState(false);
+
+  const [waitlistEmail, setWaitlistEmail] = useState('');
+  const [waitlistMessage, setWaitlistMessage] = useState('');
 
   const { addToCart } = useCart();
   const { user, isAuthenticated } = useAuth();
@@ -69,6 +73,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ productId, onBackClick })
     }
   };
 
+  const handleWaitlist = async () => {
+    if (!waitlistEmail) return;
+    try {
+      await waitlistAPI.subscribe(productId, waitlistEmail);
+      setWaitlistMessage('You will be notified when the product is back in stock.');
+    } catch (err) {
+      console.error('Waitlist subscribe error', err);
+      setWaitlistMessage('Failed to subscribe');
+    }
+  };
+
   const { wishlist, addToWishlist, removeFromWishlist } = require('../../context/WishlistContext').useWishlist();
   const inWishlist = wishlist?.some((p: any) => p._id === product?._id);
 
@@ -110,13 +125,24 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ productId, onBackClick })
         <div>
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
           <p className="text-xl text-gray-800 mb-4">${product.price}</p>
+          {product.stock === 0 && (
+            <p className="text-red-600 mb-4">Sold Out</p>
+          )}
           <p className="text-gray-700 mb-6">{product.description}</p>
-          <div className="flex space-x-4">
-            <button onClick={handleAddToCart} className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors">Add to Cart</button>
-            <button onClick={() => toggleWishlist()} className="border border-black text-black px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
-              {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
-            </button>
-          </div>
+          {product.stock > 0 ? (
+            <div className="flex space-x-4">
+              <button onClick={handleAddToCart} className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition-colors">Add to Cart</button>
+              <button onClick={() => toggleWishlist()} className="border border-black text-black px-6 py-3 rounded-md hover:bg-gray-100 transition-colors">
+                {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+              </button>
+            </div>
+            ) : (
+              <div className="mt-4">
+                <input type="email" value={waitlistEmail} onChange={(e) => setWaitlistEmail(e.target.value)} placeholder="Your email" className="border px-3 py-2 rounded-md mr-2" />
+                <button onClick={handleWaitlist} className="bg-black text-white px-4 py-2 rounded-md">Notify Me</button>
+                {waitlistMessage && <p className="text-green-600 mt-2">{waitlistMessage}</p>}
+              </div>
+            )}
         </div>
       </div>
 

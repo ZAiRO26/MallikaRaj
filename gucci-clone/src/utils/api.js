@@ -73,4 +73,9 @@ export const wishlistAPI = {
   remove: (productId) => api.delete(`/wishlist/${productId}`),
 };
 
+// Waitlist API
+export const waitlistAPI = {
+  subscribe: (productId, email) => api.post(`/waitlist/product/${productId}`, { email }),
+};
+
 export default api; 

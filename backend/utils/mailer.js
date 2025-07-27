@@ -22,4 +22,16 @@ async function sendOrderConfirmation(to, order) {
   await transporter.sendMail(mailOptions);
 }
 
-module.exports = { sendOrderConfirmation }; 
+async function sendRestockNotification(to, product) {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: `${product.name} is back in stock!`,
+    html: `<h2>Good news!</h2>
+      <p>The product <strong>${product.name}</strong> is available again.</p>
+      <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}">Shop now</a>`
+  };
+  await transporter.sendMail(mailOptions);
+}
+
+module.exports = { sendOrderConfirmation, sendRestockNotification }; 
