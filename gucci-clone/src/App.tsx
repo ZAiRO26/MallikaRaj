@@ -229,13 +229,13 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <WishlistProvider>
-          <div className="min-h-screen bg-white">
-            <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onNavigate={handleNavClick} />
-            <Header onNavigate={handleNavClick} activePage={activePage} />
-            <main>
-              {renderContent()}
-            </main>
-          </div>
+        <div className="min-h-screen bg-white">
+          <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onNavigate={handleNavClick} />
+          <Header onNavigate={handleNavClick} activePage={activePage} />
+          <main>
+            {renderContent()}
+          </main>
+        </div>
         </WishlistProvider>
       </CartProvider>
     </AuthProvider>

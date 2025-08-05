@@ -51,6 +51,7 @@ export const couponsAPI = {
   validate: (code) => api.post('/coupons/validate', { code }),
   create: (couponData) => api.post('/coupons', couponData),
   getAll: () => api.get('/coupons'),
+  delete: (id) => api.delete(`/coupons/${id}`),
 };
 
 // Newsletter API

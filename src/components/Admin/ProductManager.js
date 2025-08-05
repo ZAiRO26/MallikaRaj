@@ -29,7 +29,8 @@ const ProductManager = () => {
     try {
       setLoading(true);
       const res = await productsAPI.getAll();
-      setProducts(res.data);
+      const list = res.data.products || res.data;
+      setProducts(Array.isArray(list) ? list : []);
     } catch (err) {
       setError('Failed to load products');
     } finally {
@@ -50,6 +51,16 @@ const ProductManager = () => {
 
   const addImageField = () => {
     setForm({ ...form, images: [...form.images, ''] });
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setForm({ ...form, images: [...form.images, reader.result] });
+    };
+    reader.readAsDataURL(file);
   };
 
   const removeImageField = (idx) => {
@@ -260,6 +271,7 @@ const ProductManager = () => {
                 >
                   + Add Image
                 </button>
+                <input type="file" accept="image/*" onChange={handleFileUpload} className="mt-2" />
               </div>
               <div className="flex justify-end">
                 <button

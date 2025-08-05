@@ -20,9 +20,12 @@ const LoginForm = ({ onSwitchToRegister }) => {
     
     if (!result.success) {
       setError(result.error);
+      setLoading(false);
+      return;
     }
-    
-    setLoading(false);
+
+    // Successful login: redirect to home (or reload to update header)
+    window.location.href = '/';
   };
 
   const handleChange = (e) => {

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { ordersAPI, productsAPI, couponsAPI, newsletterAPI } from '../../utils/api';
 import ProductManager from './ProductManager';
+import OrderManager from './OrderManager';
+import CouponManager from './CouponManager';
+import NewsletterManager from './NewsletterManager';
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -206,26 +209,11 @@ const AdminDashboard = () => {
         <ProductManager />
       )}
 
-      {activeSection === 'orders' && (
-        <div className="text-center py-12">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Order Management</h3>
-          <p className="text-gray-500">Order management interface coming soon...</p>
-        </div>
-      )}
+      {activeSection === 'orders' && <OrderManager />}
 
-      {activeSection === 'coupons' && (
-        <div className="text-center py-12">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Coupon Management</h3>
-          <p className="text-gray-500">Coupon management interface coming soon...</p>
-        </div>
-      )}
+      {activeSection === 'coupons' && <CouponManager />}
 
-      {activeSection === 'newsletter' && (
-        <div className="text-center py-12">
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Newsletter Management</h3>
-          <p className="text-gray-500">Newsletter management interface coming soon...</p>
-        </div>
-      )}
+      {activeSection === 'newsletter' && <NewsletterManager />}
     </div>
   );
 };
