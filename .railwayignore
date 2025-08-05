@@ -1,0 +1,7 @@
+gucci-clone/
+src/
+public/
+*.md
+.gitignore
+netlify.toml
+build.sh 
