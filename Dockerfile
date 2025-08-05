@@ -1,19 +1,19 @@
 FROM node:20-alpine
 
-# Set working directory to /app
+# Set working directory
 WORKDIR /app
 
-# Copy backend package files
+# Copy package files first for better caching
 COPY backend/package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy backend source code
+# Copy all backend files
 COPY backend/ ./
 
 # Expose port
 EXPOSE 5000
 
-# Start the application directly with node
-CMD ["node", "index.js"] 
+# Start the application
+CMD ["npm", "start"] 
