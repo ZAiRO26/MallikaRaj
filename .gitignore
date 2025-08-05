@@ -70,7 +70,8 @@ jspm_packages/
 
 # Gatsby files
 .cache/
-public
+# Exclude root public directory but allow subdirectory public folders
+/public
 
 # Storybook build outputs
 .out
