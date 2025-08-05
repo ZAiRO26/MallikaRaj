@@ -8,7 +8,6 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && npm run dev",
     "client": "cd gucci-clone && npm start",
-    "build": "cd gucci-clone && npm run build",
     "start": "cd backend && npm start"
   },
   "keywords": [
