@@ -23,7 +23,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ productId, onBackClick })
   const [waitlistMessage, setWaitlistMessage] = useState('');
 
   const { addToCart } = useCart();
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchProduct = async () => {

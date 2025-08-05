@@ -49,9 +49,9 @@ const ProductManager = () => {
     setForm({ ...form, images: newImages });
   };
 
-  const addImageField = () => {
-    setForm({ ...form, images: [...form.images, ''] });
-  };
+  // const addImageField = () => {
+  //   setForm({ ...form, images: [...form.images, ''] });
+  // };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
