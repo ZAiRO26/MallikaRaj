@@ -1,13 +1,11 @@
 {
-  "name": "raana-backend",
+  "name": "raana-backend-deploy",
   "version": "1.0.0",
-  "description": "RAANA Backend API",
-  "main": "backend/index.js",
+  "description": "RAANA Backend Deployment",
   "scripts": {
-    "start": "cd backend && npm start",
-    "install": "cd backend && npm install"
+    "start": "cd backend && npm install && npm start"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 } 
