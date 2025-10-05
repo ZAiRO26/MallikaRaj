@@ -58,7 +58,7 @@ function App() {
     <>
       <section 
         className="relative h-screen bg-cover bg-center section-transition fade-in-up"
-        style={{ backgroundImage: "url('/NAOMI.jpg')" }}
+        style={{ backgroundImage: "url('./NAOMI.jpg')" }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
@@ -78,7 +78,7 @@ function App() {
 
       <section 
         className="relative py-40 bg-cover bg-center section-transition observe-slide-left" 
-        style={{ backgroundImage: "url('/raana-red.jpg')" }}
+        style={{ backgroundImage: "url('./raana-red.jpg')" }}
       >
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 text-center text-white">
