@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import SideMenu from './SideMenu';
 import ProductGrid from './components/Products/ProductGrid';
 import ProductDetail from './components/Products/ProductDetail';
-import CartDrawer from './components/Cart/CartDrawer';
 import CheckoutPage from './components/Checkout/CheckoutPage';
 import AuthPage from './components/Auth/AuthPage';
 import ProfilePage from './ProfilePage';

@@ -19,10 +19,7 @@ import {
   BarChart,
   Bar,
   LineChart,
-  Line,
-  RadialBarChart,
-  RadialBar,
-  Legend
+  Line
 } from 'recharts';
 
 const AdminDashboard = () => {
