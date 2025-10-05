@@ -148,4 +148,40 @@ router.put('/:id/cancel', requireAuth, async (req, res) => {
   }
 });
 
-module.exports = router; 
+// Get order statistics (admin only)
+router.get('/stats', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const totalOrders = await Order.countDocuments();
+    const pendingOrders = await Order.countDocuments({ status: 'pending' });
+    const processingOrders = await Order.countDocuments({ status: 'processing' });
+    const shippedOrders = await Order.countDocuments({ status: 'shipped' });
+    const deliveredOrders = await Order.countDocuments({ status: 'delivered' });
+    const cancelledOrders = await Order.countDocuments({ status: 'cancelled' });
+    
+    const totalRevenue = await Order.aggregate([
+      { $match: { status: { $in: ['delivered', 'shipped', 'processing'] } } },
+      { $group: { _id: null, total: { $sum: '$total' } } }
+    ]);
+    
+    const recentOrders = await Order.find()
+      .populate('user', 'name email')
+      .sort({ createdAt: -1 })
+      .limit(5);
+    
+    res.json({
+      totalOrders,
+      pendingOrders,
+      processingOrders,
+      shippedOrders,
+      deliveredOrders,
+      cancelledOrders,
+      totalRevenue: totalRevenue[0]?.total || 0,
+      recentOrders
+    });
+  } catch (err) {
+    console.error('Get order stats error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+module.exports = router;

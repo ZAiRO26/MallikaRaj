@@ -11,8 +11,8 @@ const sampleProducts = [
     price: 2980,
     originalPrice: 2980,
     images: [
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80",
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=725&q=80"
+      "/Images/luxury-handbag-1.svg",
+      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
     ],
     category: "handbags",
     subcategory: "shoulder-bags",
@@ -37,8 +37,8 @@ const sampleProducts = [
     price: 790,
     originalPrice: 790,
     images: [
-      "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=712&q=80",
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=764&q=80"
+      "/Images/luxury-shoes-1.svg",
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=712&q=80"
     ],
     category: "shoes",
     subcategory: "sneakers",
@@ -89,8 +89,8 @@ const sampleProducts = [
     price: 1200,
     originalPrice: 1500,
     images: [
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
+      "/Images/luxury-dress-1.svg",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
     ],
     category: "ready-to-wear",
     subcategory: "blouses",
@@ -134,6 +134,84 @@ const sampleProducts = [
     tags: ["wallet", "leather", "accessories", "premium"],
     featured: false,
     active: true
+  },
+  {
+    name: "RAANA Luxury Watch",
+    description: "Exquisite Swiss-made luxury watch with gold-plated case and leather strap. Features precision movement and elegant design.",
+    price: 3500,
+    originalPrice: 3500,
+    images: [
+      "/Images/luxury-watch-1.svg",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    ],
+    category: "watches",
+    subcategory: "luxury-watches",
+    brand: "RAANA",
+    materials: ["gold", "leather", "sapphire-crystal"],
+    colors: ["gold", "brown"],
+    sizes: ["standard"],
+    stock: 5,
+    sku: "RAANA-000006",
+    weight: 150,
+    dimensions: { length: 4, width: 4, height: 1 },
+    isLimitedEdition: true,
+    isNewArrival: true,
+    isOnSale: false,
+    tags: ["luxury", "watch", "swiss-made", "gold"],
+    featured: true,
+    active: true
+  },
+  {
+    name: "RAANA Diamond Necklace",
+    description: "Stunning diamond necklace with 18k gold chain. Features a brilliant-cut center diamond with smaller accent stones.",
+    price: 8500,
+    originalPrice: 8500,
+    images: [
+      "/Images/luxury-jewelry-1.svg",
+      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    ],
+    category: "jewelry",
+    subcategory: "necklaces",
+    brand: "RAANA",
+    materials: ["18k-gold", "diamond"],
+    colors: ["gold"],
+    sizes: ["standard"],
+    stock: 3,
+    sku: "RAANA-000007",
+    weight: 25,
+    dimensions: { length: 45, width: 2, height: 0.5 },
+    isLimitedEdition: true,
+    isNewArrival: true,
+    isOnSale: false,
+    tags: ["luxury", "jewelry", "diamond", "necklace", "18k-gold"],
+    featured: true,
+    active: true
+  },
+  {
+    name: "RAANA Designer Sunglasses",
+    description: "Premium designer sunglasses with tortoiseshell frames and gradient lenses. UV protection with luxury styling.",
+    price: 650,
+    originalPrice: 650,
+    images: [
+      "/Images/luxury-sunglasses-1.svg",
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+    ],
+    category: "accessories",
+    subcategory: "sunglasses",
+    brand: "RAANA",
+    materials: ["acetate", "metal", "glass"],
+    colors: ["tortoiseshell", "black"],
+    sizes: ["standard"],
+    stock: 12,
+    sku: "RAANA-000008",
+    weight: 35,
+    dimensions: { length: 14, width: 5, height: 4 },
+    isLimitedEdition: false,
+    isNewArrival: true,
+    isOnSale: false,
+    tags: ["sunglasses", "designer", "luxury", "uv-protection"],
+    featured: false,
+    active: true
   }
 ];
 
@@ -154,9 +232,25 @@ const sampleUsers = [
 
 async function seedDatabase() {
   try {
-    // Connect to MongoDB
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log('Connected to MongoDB');
+    // Connect to MongoDB with fallback to Memory Server
+    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/raana-store';
+    
+    try {
+      await mongoose.connect(mongoUri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000
+      });
+      console.log('Connected to MongoDB');
+    } catch (err) {
+      console.log('Local MongoDB not available, connecting to Memory Server...');
+      // Connect to the same Memory Server instance as the main app
+      await mongoose.connect('mongodb://127.0.0.1:27018/', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      console.log('Connected to MongoDB Memory Server');
+    }
 
     // Clear existing data
     await Product.deleteMany({});
@@ -194,4 +288,4 @@ if (require.main === module) {
   seedDatabase();
 }
 
-module.exports = { seedDatabase, sampleProducts, sampleUsers }; 
+module.exports = { seedDatabase, sampleProducts, sampleUsers };

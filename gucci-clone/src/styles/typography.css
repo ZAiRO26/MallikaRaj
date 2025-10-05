@@ -1,0 +1,400 @@
+/* Enhanced Typography System - Elegant & Eye-Soothing */
+
+/* Import refined Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+/* CSS Variables for Typography */
+:root {
+  /* Primary Font Families */
+  --font-serif-primary: 'Crimson Text', 'Playfair Display', Georgia, serif;
+  --font-serif-display: 'Playfair Display', 'Crimson Text', Georgia, serif;
+  --font-serif-body: 'Lora', 'Crimson Text', Georgia, serif;
+  --font-sans-primary: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font Sizes - Fluid Typography */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  --text-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  --text-6xl: 3.75rem;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+  
+  /* Colors */
+  --color-text-primary: #2c2c2c;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-accent: #1f2937;
+}
+
+/* Base Typography */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-serif-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings */
+h1, .h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+
+h2, .h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: #000;
+  margin-bottom: 1.25rem;
+}
+
+h3, .h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+h4, .h4 {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: #000;
+  margin-bottom: 0.75rem;
+}
+
+h5, .h5 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-normal);
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+h6, .h6 {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+  color: #000;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* Luxury Typography Classes */
+.luxury-title {
+  font-family: var(--font-luxury);
+  font-size: var(--text-6xl);
+  font-weight: var(--font-light);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-wider);
+  color: #000;
+}
+
+.luxury-subtitle {
+  font-family: var(--font-luxury);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-wide);
+  color: #333;
+}
+
+.brand-name {
+  font-family: var(--font-luxury);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+
+/* Body Text */
+p, .body-text {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+
+.lead-text {
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  color: #2a2a2a;
+}
+
+.small-text {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: #666;
+}
+
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Product Typography */
+.product-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-snug);
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: #000;
+  letter-spacing: var(--tracking-tight);
+}
+
+.product-description {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: #555;
+}
+
+/* Navigation Typography */
+.nav-link {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: #000;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #666;
+}
+
+/* Button Typography */
+.btn-text {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.btn-luxury {
+  font-family: var(--font-luxury);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  letter-spacing: var(--tracking-wider);
+}
+
+/* Form Typography */
+.form-label {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: #333;
+  letter-spacing: var(--tracking-normal);
+}
+
+.form-input {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: #000;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1, .h1 {
+    font-size: var(--text-4xl);
+  }
+  
+  h2, .h2 {
+    font-size: var(--text-3xl);
+  }
+  
+  h3, .h3 {
+    font-size: var(--text-2xl);
+  }
+  
+  .luxury-title {
+    font-size: var(--text-5xl);
+  }
+  
+  .luxury-subtitle {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  h1, .h1 {
+    font-size: var(--text-3xl);
+  }
+  
+  h2, .h2 {
+    font-size: var(--text-2xl);
+  }
+  
+  .luxury-title {
+    font-size: var(--text-4xl);
+  }
+  
+  .luxury-subtitle {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+.tracking-tight { letter-spacing: var(--tracking-tight); }
+.tracking-normal { letter-spacing: var(--tracking-normal); }
+.tracking-wide { letter-spacing: var(--tracking-wide); }
+.tracking-wider { letter-spacing: var(--tracking-wider); }
+.tracking-widest { letter-spacing: var(--tracking-widest); }
+
+/* Footer Typography */
+.footer-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.footer-link:hover {
+  color: #000;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.footer-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.footer-input:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.footer-social-link {
+  color: #6b7280;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: white;
+}
+
+.footer-social-link:hover {
+  color: #000;
+  border-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

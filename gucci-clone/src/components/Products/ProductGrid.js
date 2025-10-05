@@ -57,12 +57,16 @@ const ProductGrid = ({ onProductSelect }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {products.map((product) => (
-        <ProductCard key={product._id} product={product} onSelect={onProductSelect} />
-      ))}
+    <div className="page-container observe-fade">
+      <div className="product-grid stagger-container">
+        {products.map((product, index) => (
+          <div key={product._id} className={`stagger-item observe-scale animate-delay-${Math.min(index * 100, 600)}`}>
+            <ProductCard product={product} onSelect={onProductSelect} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default ProductGrid; 
+export default ProductGrid;

@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
-import { AuthProvider } from './context/AuthContext';
-import { CartProvider } from './context/CartContext';
-import { WishlistProvider } from './context/WishlistContext';
-import Header from './components/Layout/Header';
-import AuthPage from './components/Auth/AuthPage';
-import ProductGrid from './components/Products/ProductGrid';
-import WomenPage from './WomenPage';
-import MenPage from './MenPage';
-import ChildrenPage from './ChildrenPage';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
 import SideMenu from './SideMenu';
-import GenericPage from './GenericPage';
+import ProductGrid from './components/Products/ProductGrid';
+import ProductDetail from './components/Products/ProductDetail';
+import CartDrawer from './components/Cart/CartDrawer';
 import CheckoutPage from './components/Checkout/CheckoutPage';
-import AdminDashboard from './components/Admin/AdminDashboard';
+import AuthPage from './components/Auth/AuthPage';
+import ProfilePage from './ProfilePage';
 import AboutPage from './AboutPage';
 import ContactPage from './ContactPage';
-import ProfilePage from './ProfilePage';
+import MenPage from './MenPage';
+import WomenPage from './WomenPage';
+import ChildrenPage from './ChildrenPage';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import OrderHistory from './components/Orders/OrderHistory';
-import ProductDetail from './components/Products/ProductDetail';
+import Footer from './components/Layout/Footer';
+import Header from './components/Layout/Header';
+import GenericPage from './GenericPage';
+import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
+import { WishlistProvider } from './context/WishlistContext';
+import ScrollAnimationProvider from './components/ScrollAnimationProvider';
 
 const genericPageTitles: { [key: string]: string } = {
   'new-in': 'New In',
@@ -53,19 +58,19 @@ function App() {
   const renderHomePage = () => (
     <>
       <section 
-        className="relative h-screen bg-cover bg-center"
+        className="relative h-screen bg-cover bg-center section-transition fade-in-up"
         style={{ backgroundImage: "url('/NAOMI.jpg')" }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
-          <div className="text-center text-white">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-wider">
+          <div className="text-center text-white observe-fade">
+            <h1 className="hero-title mb-6 tracking-wider float">
               RAANA
             </h1>
-            <p className="text-xl md:text-2xl mb-8 font-light tracking-wide">
+            <p className="hero-subtitle mb-8 font-light tracking-wide fade-in-up animate-delay-200">
               A NEW ERA OF LUXURY
             </p>
-            <a href="#featured-products" className="raana-button text-lg px-8 py-4 hover:scale-105 transition-transform duration-300 inline-block">
+            <a href="#featured-products" className="btn-luxury text-lg px-8 py-4 smooth-hover inline-block fade-in-up animate-delay-400">
               SHOP NOW
             </a>
           </div>
@@ -73,22 +78,22 @@ function App() {
       </section>
 
       <section 
-        className="relative py-40 bg-cover bg-center" 
+        className="relative py-40 bg-cover bg-center section-transition observe-slide-left" 
         style={{ backgroundImage: "url('/raana-red.jpg')" }}
       >
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 text-center text-white">
-          <h2 className="text-6xl font-serif mb-8">RAANA Lido</h2>
-          <div className="flex justify-center space-x-6">
+          <h2 className="luxury-heading mb-8 observe-scale">RAANA Lido</h2>
+          <div className="flex justify-center space-x-6 observe-fade animate-delay-300">
             <button 
               onClick={() => handleNavClick('women')}
-              className="bg-white text-black px-12 py-4 font-semibold tracking-widest hover:bg-gray-200 transition-colors"
+              className="btn-luxury-outline px-12 py-4 font-semibold tracking-widest smooth-hover"
             >
               FOR HER
             </button>
             <button 
               onClick={() => handleNavClick('men')}
-              className="bg-white text-black px-12 py-4 font-semibold tracking-widest hover:bg-gray-200 transition-colors"
+              className="btn-luxury-outline px-12 py-4 font-semibold tracking-widest smooth-hover"
             >
               FOR HIM
             </button>
@@ -96,14 +101,14 @@ function App() {
         </div>
       </section>
 
-      <section id="featured-products" className="py-20 bg-white">
+      <section id="featured-products" className="py-20 bg-white section-transition anchor-link">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">FEATURED COLLECTIONS</h2>
-            <p className="text-lg text-gray-600">Discover the latest in luxury fashion</p>
+          <div className="text-center mb-16 observe-fade">
+            <h2 className="section-title mb-4">FEATURED COLLECTIONS</h2>
+            <p className="section-subtitle">Discover the latest in luxury fashion</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="product-grid stagger-container">
             {[
               {
                 name: "GG Marmont Bag",
@@ -123,19 +128,19 @@ function App() {
             ].map((product, index) => (
               <div
                 key={index}
-                className="group cursor-pointer"
+                className="product-card stagger-item scale-in smooth-hover gpu-accelerated"
               >
-                <div className="relative overflow-hidden bg-gray-100 rounded-lg">
+                <div className="product-image-container">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="product-image"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 </div>
-                <div className="mt-4 text-center">
-                  <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
-                  <p className="text-gray-600">{product.price}</p>
+                <div className="product-content">
+                  <h3 className="product-title">{product.name}</h3>
+                  <p className="product-price">{product.price}</p>
                 </div>
               </div>
             ))}
@@ -143,29 +148,29 @@ function App() {
         </div>
       </section>
 
-      <section id="brand-story" className="py-20 bg-gray-50">
+      <section id="brand-story" className="py-20 bg-gray-50 section-transition anchor-link">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">THE RAANA STORY</h2>
-              <p className="text-lg text-gray-600 mb-6">
+            <div className="observe-slide-right">
+              <h2 className="section-title mb-6">THE RAANA STORY</h2>
+              <p className="body-text mb-6 fade-in-up animate-delay-200">
                 Founded in Florence in 1921, RAANA is one of the world's leading luxury fashion brands. 
                 With its unique vision, innovative design approach, and distinctive craftsmanship, 
                 RAANA has become a symbol of Italian excellence worldwide.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="body-text mb-8 fade-in-up animate-delay-300">
                 Today, under the creative direction of Alessandro Michele, RAANA continues to push 
                 boundaries and redefine luxury for a new generation.
               </p>
-              <a href="#brand-story" className="raana-button-outline hover:scale-105 transition-transform duration-300 inline-block">
+              <a href="#brand-story" className="btn-luxury-outline smooth-hover inline-block fade-in-up animate-delay-400">
                 LEARN MORE
               </a>
             </div>
-            <div className="relative">
+            <div className="relative observe-slide-left">
               <img
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                 alt="RAANA Store"
-                className="w-full h-96 object-cover rounded-lg"
+                className="w-full h-96 object-cover rounded-lg smooth-hover"
               />
             </div>
           </div>
@@ -226,19 +231,28 @@ function App() {
   };
 
   return (
-    <AuthProvider>
-      <CartProvider>
-        <WishlistProvider>
-        <div className="min-h-screen bg-white">
-          <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} onNavigate={handleNavClick} />
-          <Header onNavigate={handleNavClick} activePage={activePage} />
-          <main>
-            {renderContent()}
-          </main>
-        </div>
-        </WishlistProvider>
-      </CartProvider>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <ScrollAnimationProvider>
+              <div className="App">
+                <SideMenu 
+                   isOpen={isMenuOpen} 
+                   onClose={() => setIsMenuOpen(false)} 
+                   onNavigate={handleNavClick}
+                 />
+                <Header onNavigate={handleNavClick} activePage={activePage} />
+                <main>
+                  {renderContent()}
+                </main>
+                <Footer />
+              </div>
+            </ScrollAnimationProvider>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

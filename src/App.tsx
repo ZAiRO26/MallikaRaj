@@ -4,6 +4,11 @@ import MenPage from './MenPage';
 import ChildrenPage from './ChildrenPage';
 import GenericPage from './GenericPage';
 import SideMenu from './SideMenu';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import AuthPage from './components/Auth/AuthPage';
+import CartDrawer from './components/Cart/CartDrawer';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { CartProvider, useCart } from './context/CartContext';
 
 const genericPageTitles: { [key: string]: string } = {
   'new-in': 'New In',
@@ -21,10 +26,13 @@ const genericPageTitles: { [key: string]: string } = {
   'contact-us': 'Contact Us',
 };
 
-function App() {
+const AppContent = () => {
+  const { user, isAuthenticated } = useAuth();
+  const { getItemCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activePage, setActivePage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +45,7 @@ function App() {
 
   const handleNavClick = (page: string) => {
     setActivePage(page);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderHomePage = () => (
@@ -177,6 +185,12 @@ function App() {
     if (activePage === 'children') {
       return <ChildrenPage onBackClick={() => handleNavClick('home')} />;
     }
+    if (activePage === 'admin') {
+      return <AdminDashboard />;
+    }
+    if (activePage === 'sign-in') {
+      return <AuthPage onSuccess={() => handleNavClick('home')} />;
+    }
     if (genericPageTitles[activePage]) {
       return <GenericPage title={genericPageTitles[activePage]} onBackClick={() => handleNavClick('home')} />;
     }
@@ -215,20 +229,37 @@ function App() {
                 </svg>
               </button>
               <button
-                onClick={() => alert('Profile clicked!')}
+                onClick={() => handleNavClick('sign-in')}
                 className={`p-2 ${isScrolled || activePage !== 'home' ? 'text-gray-700' : 'text-white'}`}
+                title={isAuthenticated ? `Welcome, ${user?.name}` : 'Sign In'}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </button>
+              {isAuthenticated && user?.isAdmin && (
+                <button
+                  onClick={() => handleNavClick('admin')}
+                  className={`p-2 ${isScrolled || activePage !== 'home' ? 'text-gray-700' : 'text-white'}`}
+                  title="Admin Dashboard"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </button>
+              )}
               <button
-                onClick={() => alert('Cart clicked!')}
-                className={`p-2 ${isScrolled || activePage !== 'home' ? 'text-gray-700' : 'text-white'}`}
+                onClick={() => setIsCartOpen(true)}
+                className={`p-2 relative ${isScrolled || activePage !== 'home' ? 'text-gray-700' : 'text-white'}`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
                 </svg>
+                {getItemCount() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {getItemCount()}
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -238,6 +269,11 @@ function App() {
       <main>
         {renderContent()}
       </main>
+
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+      />
 
       <footer className="bg-black text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -281,6 +317,16 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

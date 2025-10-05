@@ -39,7 +39,7 @@ const Header = ({ onNavigate, activePage }) => {
             <div className="flex items-center">
               <button 
                 onClick={() => handleNavClick('home')}
-                className="text-2xl font-bold text-gray-900 hover:text-gray-700"
+                className="brand-logo hover:text-gray-700"
               >
                 RAANA
               </button>
@@ -49,7 +49,7 @@ const Header = ({ onNavigate, activePage }) => {
             <nav className="hidden md:flex space-x-8">
               <button 
                 onClick={() => handleNavClick('home')}
-                className={`px-3 py-2 text-sm font-medium ${
+                className={`nav-link ${
                   activePage === 'home' ? 'text-black border-b-2 border-black' : 'text-gray-700 hover:text-black'
                 }`}
               >
@@ -57,7 +57,7 @@ const Header = ({ onNavigate, activePage }) => {
               </button>
               <button 
                 onClick={() => handleNavClick('products')}
-                className={`px-3 py-2 text-sm font-medium ${
+                className={`nav-link ${
                   activePage === 'products' ? 'text-black border-b-2 border-black' : 'text-gray-700 hover:text-black'
                 }`}
               >
@@ -65,7 +65,7 @@ const Header = ({ onNavigate, activePage }) => {
               </button>
               <button 
                 onClick={() => handleNavClick('women')}
-                className={`px-3 py-2 text-sm font-medium ${
+                className={`nav-link ${
                   activePage === 'women' ? 'text-black border-b-2 border-black' : 'text-gray-700 hover:text-black'
                 }`}
               >
@@ -73,7 +73,7 @@ const Header = ({ onNavigate, activePage }) => {
               </button>
               <button 
                 onClick={() => handleNavClick('men')}
-                className={`px-3 py-2 text-sm font-medium ${
+                className={`nav-link ${
                   activePage === 'men' ? 'text-black border-b-2 border-black' : 'text-gray-700 hover:text-black'
                 }`}
               >
@@ -81,7 +81,7 @@ const Header = ({ onNavigate, activePage }) => {
               </button>
               <button 
                 onClick={() => handleNavClick('about')}
-                className={`px-3 py-2 text-sm font-medium ${
+                className={`nav-link ${
                   activePage === 'about' ? 'text-black border-b-2 border-black' : 'text-gray-700 hover:text-black'
                 }`}
               >
@@ -194,4 +194,4 @@ const Header = ({ onNavigate, activePage }) => {
   );
 };
 
-export default Header; 
+export default Header;
