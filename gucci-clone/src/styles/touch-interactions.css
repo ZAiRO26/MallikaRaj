@@ -1,0 +1,577 @@
+/* Touch-Friendly Interactions and Gestures */
+
+/* Touch Target Sizing */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced Button Touch Targets */
+button,
+.btn,
+a[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 12px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Touch Feedback - Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Touch Hover States */
+@media (hover: hover) and (pointer: fine) {
+  /* Desktop hover states */
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover-brightness:hover {
+    filter: brightness(1.1);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  /* Mobile touch states */
+  .hover-lift:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover-scale:active {
+    transform: scale(0.98);
+  }
+  
+  .hover-brightness:active {
+    filter: brightness(0.95);
+  }
+}
+
+/* Swipe Gestures */
+.swipeable {
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.swipe-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.swipe-container::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Pull to Refresh */
+.pull-to-refresh {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Touch Scroll Momentum */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Tap Highlight Removal */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Custom Tap Highlight */
+.tap-highlight {
+  -webkit-tap-highlight-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Long Press Prevention */
+.no-long-press {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Touch Action Controls */
+.pan-y {
+  touch-action: pan-y;
+}
+
+.pan-x {
+  touch-action: pan-x;
+}
+
+.pinch-zoom {
+  touch-action: pinch-zoom;
+}
+
+.manipulation {
+  touch-action: manipulation;
+}
+
+/* Gesture Recognition */
+.gesture-area {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Mobile Menu Animations */
+.mobile-menu-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.mobile-menu-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.mobile-menu-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.mobile-menu-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+/* Drawer/Slide Animations */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 280px;
+  background: white;
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.drawer.active {
+  transform: translateX(0);
+}
+
+/* Modal Animations */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1) translateY(0);
+}
+
+/* Accordion/Collapse Animations */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.expanded {
+  max-height: 1000px;
+}
+
+/* Loading Spinner for Touch Interactions */
+.touch-loading {
+  position: relative;
+}
+
+.touch-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.touch-loading.loading::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Swipe Indicators */
+.swipe-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.swipe-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.swipe-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* Touch-Friendly Form Elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea,
+select {
+  min-height: 44px;
+  padding: 12px 16px;
+  font-size: 16px; /* Prevents zoom on iOS */
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Touch-Friendly Checkboxes and Radio Buttons */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.custom-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: #fff;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Floating Action Button */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 30;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* Bottom Sheet */
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 50;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.bottom-sheet.active {
+  transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: #d1d5db;
+  border-radius: 2px;
+  margin: 12px auto 20px;
+  cursor: grab;
+}
+
+.bottom-sheet-handle:active {
+  cursor: grabbing;
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1f2937;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 60;
+  max-width: 300px;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  background: #10b981;
+}
+
+.toast.error {
+  background: #ef4444;
+}
+
+.toast.warning {
+  background: #f59e0b;
+}
+
+/* Responsive Touch Adjustments */
+@media (max-width: 768px) {
+  /* Increase touch targets on mobile */
+  button,
+  .btn,
+  a[role="button"] {
+    min-height: 48px;
+    padding: 14px 18px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  textarea,
+  select {
+    min-height: 48px;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  
+  .fab {
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Accessibility for Touch */
+@media (prefers-reduced-motion: reduce) {
+  .ripple::before,
+  .mobile-menu-enter-active,
+  .mobile-menu-exit-active,
+  .drawer,
+  .modal,
+  .accordion-content,
+  .fab,
+  .bottom-sheet,
+  .toast {
+    transition: none;
+  }
+  
+  .touch-loading::after {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="search"],
+  textarea,
+  select {
+    border-width: 3px;
+  }
+  
+  .custom-checkbox .checkmark {
+    border-width: 3px;
+  }
+  
+  button,
+  .btn {
+    border: 2px solid;
+  }
+}

@@ -15,7 +15,20 @@ module.exports = {
         'serif': ['Georgia', 'serif'],
         'sans': ['Arial', 'sans-serif'],
       },
+      screens: {
+        'xs': '475px',
+        '3xl': '1600px',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
+      aspectRatio: {
+        '4/5': '4 / 5',
+        '3/4': '3 / 4',
+      },
     },
   },
   plugins: [],
-} 
+}

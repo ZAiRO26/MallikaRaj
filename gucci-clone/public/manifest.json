@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ZAIROxLUXE",
+  "name": "ZAIROxLUXE - Premium Luxury Fashion",
+  "description": "Discover premium luxury fashion and accessories at ZAIROxLUXE",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,92 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable any"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["shopping", "lifestyle", "fashion"],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "ZAIROxLUXE Desktop View"
+    },
+    {
+      "src": "screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "ZAIROxLUXE Mobile View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Products",
+      "short_name": "Products",
+      "description": "Browse our luxury product collection",
+      "url": "/products",
+      "icons": [
+        {
+          "src": "shortcut-products.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "description": "View your shopping cart",
+      "url": "/cart",
+      "icons": [
+        {
+          "src": "shortcut-cart.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "short_name": "Profile",
+      "description": "Manage your account",
+      "url": "/profile",
+      "icons": [
+        {
+          "src": "shortcut-profile.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "capture_links": "existing-client-navigate"
 }

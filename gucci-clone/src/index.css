@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import typography styles */
+@import './styles/typography.css';
+
+/* Import cross-browser compatibility fixes */
+@import './styles/cross-browser.css';
+
+/* Import touch-friendly interactions */
+@import './styles/touch-interactions.css';
+
 @layer base {
   html {
     scroll-behavior: smooth;

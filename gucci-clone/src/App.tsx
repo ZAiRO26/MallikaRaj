@@ -9,6 +9,7 @@ import AuthPage from './components/Auth/AuthPage';
 import ProfilePage from './ProfilePage';
 import AboutPage from './AboutPage';
 import ContactPage from './ContactPage';
+import CollectionsPage from './CollectionsPage';
 import MenPage from './MenPage';
 import WomenPage from './WomenPage';
 import ChildrenPage from './ChildrenPage';
@@ -67,20 +68,19 @@ function AppContent() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('./NAOMI.jpg')`,
-            filter: 'brightness(0.7)'
+            backgroundImage: `url('./NAOMI.jpg')`
           }}
         />
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-6xl md:text-8xl font-light mb-6 tracking-wider">
+        <div className="relative z-10 text-center px-4">
+          <h1 className="hero-title mb-6">
             RAANA
           </h1>
-          <p className="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto">
+          <p className="hero-subtitle mb-8 max-w-2xl mx-auto">
             Discover the epitome of luxury fashion and timeless elegance
           </p>
           <button 
             onClick={() => handleNavClick('products')}
-            className="bg-white text-black px-8 py-3 text-lg font-medium hover:bg-gray-100 transition-colors duration-300"
+            className="bg-white text-black px-8 py-3 text-lg font-medium hover:bg-gray-100 transition-colors duration-300 shadow-lg"
           >
             EXPLORE COLLECTION
           </button>
@@ -171,6 +171,7 @@ function AppContent() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/about" element={<AboutPage onBackClick={() => handleNavClick('home')} />} />
+          <Route path="/collections" element={<CollectionsPage onBackClick={() => handleNavClick('home')} />} />
           <Route path="/contact-us" element={<ContactPage onBackClick={() => handleNavClick('home')} />} />
           <Route path="/profile" element={<ProfilePage onBackClick={() => handleNavClick('home')} />} />
           <Route path="/my-orders" element={<OrderHistory />} />

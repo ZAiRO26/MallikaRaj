@@ -57,10 +57,10 @@ const AppContent = () => {
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <div className="text-center text-white">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-wider">
+            <h1 className="luxury-title text-white mb-6">
               RAANA
             </h1>
-            <p className="text-xl md:text-2xl mb-8 font-light tracking-wide">
+            <p className="luxury-subtitle text-white mb-8 opacity-90">
               A NEW ERA OF LUXURY
             </p>
             <a href="#featured-products" className="raana-button text-lg px-8 py-4 hover:scale-105 transition-transform duration-300 inline-block">
@@ -76,7 +76,7 @@ const AppContent = () => {
       >
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 text-center text-white">
-          <h2 className="text-6xl font-serif mb-8">RAANA Lido</h2>
+          <h2 className="brand-name text-6xl text-white mb-8">RAANA Lido</h2>
           <div className="flex justify-center space-x-6">
             <button 
               onClick={() => handleNavClick('women')}
@@ -145,13 +145,13 @@ const AppContent = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">THE RAANA STORY</h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <h2 className="luxury-subtitle text-gray-900 mb-6">THE RAANA STORY</h2>
+              <p className="editorial-text text-gray-600 mb-6">
                 Founded in Florence in 1921, RAANA is one of the world's leading luxury fashion brands. 
                 With its unique vision, innovative design approach, and distinctive craftsmanship, 
                 RAANA has become a symbol of Italian excellence worldwide.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="editorial-text text-gray-600 mb-8">
                 Today, under the creative direction of Alessandro Michele, RAANA continues to push 
                 boundaries and redefine luxury for a new generation.
               </p>
