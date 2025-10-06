@@ -5,8 +5,8 @@ import { useCart } from '../../context/CartContext';
 import CartDrawer from '../Cart/CartDrawer';
 
 const Header = ({ onNavigate, activePage }) => {
-  const { user, logout, isAuthenticated } = useAuth();
-  const { getItemCount, cartItems } = useCart();
+  const { user, logout } = useAuth();
+  const { getItemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,12 +25,6 @@ const Header = ({ onNavigate, activePage }) => {
   }, [isUserMenuOpen]);
 
   const cartItemCount = getItemCount();
-
-  const handleNavClick = (page) => {
-    if (onNavigate) {
-      onNavigate(page);
-    }
-  };
 
   return (
     <>

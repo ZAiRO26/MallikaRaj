@@ -31,12 +31,7 @@
     "eject": "react-scripts eject",
     "build:analyze": "npm run build && npx serve -s build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
