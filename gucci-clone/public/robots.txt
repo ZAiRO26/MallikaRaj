@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-netlify-site.netlify.app/sitemap.xml
+Sitemap: https://zairoxshop.netlify.app/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin

@@ -113,8 +113,57 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ productId, onBackClick })
     );
   }
 
+  // Generate structured data for SEO
+  const structuredData = product ? {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "image": product.images?.[0] || '/placeholder-product.jpg',
+    "brand": {
+      "@type": "Brand",
+      "name": "RAANA"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `${window.location.origin}/product/${product._id}`,
+      "priceCurrency": "USD",
+      "price": product.price,
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "RAANA"
+      }
+    },
+    "aggregateRating": reviews.length > 0 ? {
+      "@type": "AggregateRating",
+      "ratingValue": (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1),
+      "reviewCount": reviews.length
+    } : undefined,
+    "review": reviews.map(review => ({
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": review.rating,
+        "bestRating": 5
+      },
+      "author": {
+        "@type": "Person",
+        "name": review.user?.name || "Anonymous"
+      },
+      "reviewBody": review.comment
+    }))
+  } : null;
+
   return (
     <div className="page-container py-12 fade-in-up">
+      {/* Structured Data */}
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
       <button onClick={onBackClick} className="nav-link mb-6 smooth-hover observe-fade">&larr; Back to Products</button>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Images */}
