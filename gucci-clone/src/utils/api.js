@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://your-actual-railway-url.railway.app/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -79,4 +79,4 @@ export const waitlistAPI = {
   subscribe: (productId, email) => api.post(`/waitlist/product/${productId}`, { email }),
 };
 
-export default api; 
+export default api;
