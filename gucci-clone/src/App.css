@@ -364,6 +364,144 @@
   }
 }
 
+/* Custom animations for carousel */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .hero-carousel {
+    height: 70vh;
+    min-height: 500px;
+  }
+  
+  .hero-carousel h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-carousel .hero-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-carousel {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  .hero-carousel h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero-carousel p {
+    font-size: 0.875rem;
+  }
+  
+  .hero-carousel button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Cross-browser compatibility */
+.hero-carousel {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hero-carousel .slide-transition {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+/* Improved mobile navigation */
+@media (max-width: 768px) {
+  .mobile-menu {
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-menu-item {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* Enhanced button interactions */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Smooth scrolling for all browsers */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Grid improvements for mobile */
+@media (max-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+```
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-title {
@@ -451,6 +589,446 @@ button, .clickable {
 }
 
 /* Better spacing for mobile */
+@media (max-width: 640px) {
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Improve image loading and performance */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Animation performance */
+* {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Cross-Browser Compatibility Enhancements */
+/* Webkit browsers (Chrome, Safari, Edge) */
+@supports (-webkit-appearance: none) {
+  .hero-carousel {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+  .hero-carousel {
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Internet Explorer and Edge Legacy fixes */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .hero-carousel {
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Mobile Device Optimizations */
+/* iOS Safari specific */
+@supports (-webkit-touch-callout: none) {
+  .hero-carousel {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix iOS Safari viewport issues */
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Android Chrome specific */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  .hero-carousel {
+    will-change: transform;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-carousel img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hero-carousel .nav-arrow {
+    display: none;
+  }
+  
+  .hero-carousel .swipe-indicator {
+    display: block;
+  }
+  
+  /* Larger touch targets for mobile */
+  button, .clickable {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel {
+    animation: none;
+  }
+  
+  .hero-carousel .slide-transition {
+    transition: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .hero-carousel .slide-indicators button {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .hero-carousel .slide-indicators button.active {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero-carousel .nav-arrow,
+  .hero-carousel .slide-indicators,
+  .hero-carousel .auto-play-toggle {
+    display: none;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hero-carousel {
+    height: 90vh;
+  }
+  
+  .hero-carousel h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-carousel p {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1920px) {
+  .hero-carousel {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+/* Small screens (phones in portrait) */
+@media (max-width: 375px) {
+  .hero-carousel {
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .hero-carousel h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  
+  .hero-carousel p {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  .hero-carousel button {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-carousel {
+    height: 70vh;
+  }
+  
+  .hero-carousel .nav-arrow {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Performance optimizations for older devices */
+@media (max-width: 768px) {
+  .hero-carousel {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+  
+  /* Reduce animations on low-end devices */
+  .hero-carousel .slide {
+    will-change: transform;
+  }
+}
+
+/* Accessibility improvements */
+.hero-carousel:focus-within {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hero-carousel button {
+    border: 2px solid currentColor;
+  }
+  
+  .hero-carousel .slide-indicators button {
+    border: 1px solid currentColor;
+  }
+}
+
+.stagger-container .stagger-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-container .stagger-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.scale-in {
+  transform: scale(0.9);
+  transition: transform 0.3s ease-out;
+}
+
+.scale-in:hover {
+  transform: scale(1);
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* MallikaRAJ Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(185, 28, 28, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b91c1c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #991b1b;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Custom button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
+}
+
+/* Typography */
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom gradient backgrounds */
+.bg-mallikaraj-gradient {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.bg-mallikaraj-red {
+  background-color: #dc2626;
+}
+
+/* Product card styles */
+.product-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(185, 28, 28, 0.2);
+}
+
+/* Custom spacing */
+.section-padding {
+  padding: 4rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 2rem 0;
+  }
+}
+
 @media (max-width: 640px) {
   .px-4 {
     padding-left: 1rem;

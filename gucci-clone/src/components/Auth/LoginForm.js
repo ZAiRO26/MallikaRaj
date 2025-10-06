@@ -43,7 +43,7 @@ const LoginForm = ({ onSwitchToRegister }) => {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Welcome back to RAANA
+            Welcome back to MallikaRAJ
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -140,4 +140,4 @@ const LoginForm = ({ onSwitchToRegister }) => {
   );
 };
 
-export default LoginForm; 
+export default LoginForm;

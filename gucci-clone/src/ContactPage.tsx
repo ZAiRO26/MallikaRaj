@@ -151,7 +151,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBackClick }) => {
                   </svg>
                   <div>
                     <p className="font-medium text-gray-900">Email</p>
-                    <p className="text-gray-600">customerservice@raana.com</p>
+                    <p className="text-gray-600">customerservice@mallikaraj.com</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -160,7 +160,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBackClick }) => {
                   </svg>
                   <div>
                     <p className="font-medium text-gray-900">Phone</p>
-                    <p className="text-gray-600">+1 (800) RAANA-1</p>
+                    <p className="text-gray-600">+1 (800) MallikaRAJ-1</p>
                   </div>
                 </div>
               </div>
@@ -199,4 +199,4 @@ const ContactPage: React.FC<ContactPageProps> = ({ onBackClick }) => {
   );
 };
 
-export default ContactPage; 
+export default ContactPage;

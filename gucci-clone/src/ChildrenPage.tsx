@@ -42,7 +42,7 @@ const ChildrenPage: React.FC<ChildrenPageProps> = ({ onBackClick }) => {
           alt="Children with a stroller" 
           className="w-full max-w-md mx-auto h-auto object-cover"
         />
-        <p className="mt-4 text-gray-800 text-lg">RAANA Stroller</p>
+        <p className="mt-4 text-gray-800 text-lg">MallikaRAJ Stroller</p>
       </div>
 
       <ul className="space-y-5">
@@ -58,4 +58,4 @@ const ChildrenPage: React.FC<ChildrenPageProps> = ({ onBackClick }) => {
   );
 };
 
-export default ChildrenPage; 
+export default ChildrenPage;

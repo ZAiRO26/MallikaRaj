@@ -54,7 +54,7 @@ const RegisterForm = ({ onSwitchToLogin }) => {
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Join RAANA for exclusive luxury experiences
+            Join MallikaRAJ for exclusive luxury experiences
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -155,4 +155,4 @@ const RegisterForm = ({ onSwitchToLogin }) => {
   );
 };
 
-export default RegisterForm; 
+export default RegisterForm;

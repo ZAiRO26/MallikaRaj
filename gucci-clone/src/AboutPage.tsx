@@ -29,7 +29,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBackClick }) => {
       </button>
 
       <div className="text-center mb-16 observe-fade">
-        <h1 className="page-title mb-6">About RAANA</h1>
+        <h1 className="page-title mb-6">About MallikaRAJ</h1>
         <p className="hero-subtitle max-w-2xl mx-auto">
           A legacy of luxury, innovation, and timeless elegance
         </p>
@@ -39,7 +39,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBackClick }) => {
         <div className="observe-slide-right">
           <h2 className="section-title mb-6">Our Heritage</h2>
           <p className="body-text mb-4 fade-in-up animate-delay-200">
-            Founded in Florence in 1921, RAANA has been at the forefront of luxury fashion for over a century. 
+            Founded in Florence in 1921, MallikaRAJ has been at the forefront of luxury fashion for over a century. 
             What began as a small leather goods workshop has evolved into one of the world's most prestigious 
             fashion houses, synonymous with Italian craftsmanship and innovative design.
           </p>
@@ -49,14 +49,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBackClick }) => {
             continues to guide our creative direction today.
           </p>
           <p className="body-text fade-in-up animate-delay-400">
-            Throughout our history, RAANA has remained committed to excellence, pushing boundaries while 
+            Throughout our history, MallikaRAJ has remained committed to excellence, pushing boundaries while 
             honoring our rich heritage and the skilled artisans who bring our vision to life.
           </p>
         </div>
         <div className="relative observe-slide-left">
           <img
             src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
-            alt="RAANA Heritage"
+            alt="MallikaRAJ Heritage"
             className="product-image rounded-lg smooth-hover"
           />
         </div>
@@ -66,14 +66,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBackClick }) => {
         <div className="relative observe-slide-right">
           <img
             src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80"
-            alt="RAANA Craftsmanship"
+            alt="MallikaRAJ Craftsmanship"
             className="product-image rounded-lg smooth-hover"
           />
         </div>
         <div className="observe-slide-left">
           <h2 className="section-title mb-6">Craftsmanship</h2>
           <p className="body-text mb-4 fade-in-up animate-delay-200">
-            At RAANA, we believe that true luxury lies in the details. Every piece we create is the result of 
+            At MallikaRAJ, we believe that true luxury lies in the details. Every piece we create is the result of 
             generations of expertise, passed down from master artisans to their apprentices. Our workshops in 
             Italy continue to use traditional techniques alongside cutting-edge technology.
           </p>
@@ -83,7 +83,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onBackClick }) => {
             by skilled artisans who have dedicated their lives to perfecting their craft.
           </p>
           <p className="body-text fade-in-up animate-delay-400">
-            This commitment to craftsmanship is what sets RAANA apart and ensures that every piece we create 
+            This commitment to craftsmanship is what sets MallikaRAJ apart and ensures that every piece we create 
             becomes a timeless treasure to be passed down through generations.
           </p>
         </div>
