@@ -71,16 +71,16 @@ function AppContent() {
             backgroundImage: `url('./NAOMI.jpg')`
           }}
         />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="hero-title mb-6">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
+          <h1 className="hero-title mb-4 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wider">
             RAANA
           </h1>
-          <p className="hero-subtitle mb-8 max-w-2xl mx-auto">
+          <p className="hero-subtitle mb-6 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed">
             Discover the epitome of luxury fashion and timeless elegance
           </p>
           <button 
             onClick={() => handleNavClick('products')}
-            className="bg-white text-black px-8 py-3 text-lg font-medium hover:bg-gray-100 transition-colors duration-300 shadow-lg"
+            className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-medium hover:bg-gray-100 transition-colors duration-300 shadow-lg rounded-sm uppercase tracking-wide min-h-[44px]"
           >
             EXPLORE COLLECTION
           </button>
@@ -88,12 +88,12 @@ function AppContent() {
       </section>
 
       {/* Featured Section */}
-      <section className="py-20 px-4">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-light text-center mb-16">Featured Collections</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-8 sm:mb-12 lg:mb-16">Featured Collections</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <div className="relative group cursor-pointer" onClick={() => handleNavClick('women')}>
-              <div className="aspect-[4/5] bg-gray-200 overflow-hidden">
+              <div className="aspect-[4/5] sm:aspect-[4/5] bg-gray-200 overflow-hidden rounded-lg">
                 <div 
                   className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                   style={{
@@ -101,14 +101,14 @@ function AppContent() {
                   }}
                 />
               </div>
-              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300" />
-              <div className="absolute bottom-8 left-8 text-white">
-                <h3 className="text-3xl font-light mb-2">Women</h3>
-                <p className="text-lg opacity-90">Discover our latest collection</p>
+              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg" />
+              <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8 text-white">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-light mb-1 sm:mb-2">Women</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">Discover our latest collection</p>
               </div>
             </div>
             <div className="relative group cursor-pointer" onClick={() => handleNavClick('men')}>
-              <div className="aspect-[4/5] bg-gray-200 overflow-hidden">
+              <div className="aspect-[4/5] sm:aspect-[4/5] bg-gray-200 overflow-hidden rounded-lg">
                 <div 
                   className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                   style={{
@@ -116,10 +116,10 @@ function AppContent() {
                   }}
                 />
               </div>
-              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300" />
-              <div className="absolute bottom-8 left-8 text-white">
-                <h3 className="text-3xl font-light mb-2">Men</h3>
-                <p className="text-lg opacity-90">Timeless sophistication</p>
+              <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg" />
+              <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8 text-white">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-light mb-1 sm:mb-2">Men</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">Timeless sophistication</p>
               </div>
             </div>
           </div>
@@ -127,17 +127,17 @@ function AppContent() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-light mb-8">The RAANA Legacy</h2>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light mb-6 sm:mb-8">The RAANA Legacy</h2>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
             Since our founding, RAANA has been synonymous with uncompromising quality, 
             innovative design, and timeless elegance. Each piece in our collection 
             represents the perfect fusion of traditional craftsmanship and contemporary style.
           </p>
           <button 
             onClick={() => handleNavClick('about')}
-            className="border border-black px-8 py-3 text-lg font-medium hover:bg-black hover:text-white transition-colors duration-300"
+            className="border border-black px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg font-medium hover:bg-black hover:text-white transition-colors duration-300 rounded-sm uppercase tracking-wide min-h-[44px]"
           >
             LEARN MORE
           </button>

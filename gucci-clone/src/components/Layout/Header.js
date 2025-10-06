@@ -61,9 +61,9 @@ const Header = ({ onNavigate, activePage }) => {
               </Link>
             </div>
 
-            <div class="hidden md:flex items-center justify-end flex-1">
+            <div className="hidden md:flex items-center justify-end flex-1">
               {/* Desktop Navigation */}
-              <nav class="flex items-center space-x-8 mr-8">
+              <nav className="flex items-center space-x-8 mr-8">
                 <Link to="/" className="text-sm font-medium text-gray-700 hover:text-black tracking-widest transition-colors">
                   Home
                 </Link>
@@ -102,35 +102,103 @@ const Header = ({ onNavigate, activePage }) => {
                 <Link to="/about" className="text-sm font-medium text-gray-700 hover:text-black tracking-widest transition-colors">
                   About
                 </Link>
-                <Link to="/contact-us" class="text-sm font-medium text-gray-700 hover:text-black tracking-widest transition-colors">
+                <Link to="/contact-us" className="text-sm font-medium text-gray-700 hover:text-black tracking-widest transition-colors">
                   Contact
                 </Link>
               </nav>
 
               {/* Right Side Actions */}
-              <div class="flex items-center space-x-2 md:space-x-4">
+              <div className="flex items-center space-x-2 md:space-x-4">
                 {/* Search Button - Desktop */}
-                <button class="hidden md:flex p-2 rounded-md text-gray-600 hover:text-black hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] items-center justify-center" aria-label="Search">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                <button className="hidden md:flex p-2 rounded-md text-gray-600 hover:text-black hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] items-center justify-center" aria-label="Search">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                   </svg>
                 </button>
 
               {/* Cart Button */}
-              <Link to="/cart" class="relative p-2 rounded-md text-gray-600 hover:text-black hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Shopping cart with 0 items">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6m0 0h15M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"></path>
+              <button 
+                onClick={() => setIsCartOpen(true)}
+                className="relative p-2 rounded-md text-gray-600 hover:text-black hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" 
+                aria-label={`Shopping cart with ${cartItemCount} items`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6m0 0h15M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z"></path>
                 </svg>
-                </Link>
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
 
               {/* User Menu */}
-              <div class="relative" ref="{userMenuRef}">
-                <a href="/auth" class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 transition-colors min-h-[44px]">
-                    Sign In
-                  </a>
+              <div className="relative" ref={userMenuRef}>
+                {user ? (
+                  <>
+                    <button
+                      onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                      className="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-black transition-colors min-h-[44px]"
+                    >
+                      <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-2">
+                        <span className="text-sm font-medium text-gray-700">
+                          {user.name?.charAt(0).toUpperCase() || 'U'}
+                        </span>
+                      </div>
+                      <span className="hidden lg:block">{user.name}</span>
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
 
-                {/* User Dropdown Menu */}
-                </div>
+                    {/* User Dropdown Menu */}
+                    {isUserMenuOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 border border-gray-200">
+                        <Link
+                          to="/profile"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-colors"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          Profile
+                        </Link>
+                        <Link
+                          to="/my-orders"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-colors"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          My Orders
+                        </Link>
+                        {user.isAdmin && (
+                          <Link
+                            to="/admin"
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-black transition-colors"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            Admin Dashboard
+                          </Link>
+                        )}
+                        <hr className="my-2" />
+                        <button
+                          onClick={() => {
+                            logout();
+                            setIsUserMenuOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    to="/auth"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-800 transition-colors min-h-[44px]"
+                  >
+                    Sign In
+                  </Link>
+                )}
+              </div>
               </div>
             </div>
           </div>

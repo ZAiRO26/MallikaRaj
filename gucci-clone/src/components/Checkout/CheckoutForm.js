@@ -61,7 +61,7 @@ const CheckoutForm = ({ onProceedToPayment }) => {
 
     // Prepare order data
     const orderData = {
-      user: user.id,
+      user: user?.id,
       products: cartItems.map(item => ({
         product: item.product._id,
         quantity: item.quantity,
@@ -310,4 +310,4 @@ const CheckoutForm = ({ onProceedToPayment }) => {
   );
 };
 
-export default CheckoutForm; 
+export default CheckoutForm;

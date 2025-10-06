@@ -42,10 +42,10 @@ const CheckoutPage = () => {
           </p>
           <div className="bg-gray-50 p-4 rounded-md mb-6">
             <p className="text-sm text-gray-600">
-              <strong>Order ID:</strong> {orderDetails._id}
+              <strong>Order ID:</strong> {orderDetails?._id || 'N/A'}
             </p>
             <p className="text-sm text-gray-600">
-              <strong>Total:</strong> ${orderDetails.total.toFixed(2)}
+              <strong>Total:</strong> ${orderDetails?.total?.toFixed(2) || '0.00'}
             </p>
           </div>
           <div className="space-y-3">
@@ -56,7 +56,7 @@ const CheckoutPage = () => {
               Continue Shopping
             </a>
             <a
-              href="/orders"
+              href="/my-orders"
               className="block w-full bg-gray-200 text-gray-900 py-3 px-4 rounded-md font-medium hover:bg-gray-300"
             >
               View Orders
@@ -84,4 +84,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage; 
+export default CheckoutPage;

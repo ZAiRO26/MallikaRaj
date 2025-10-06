@@ -6,7 +6,7 @@ Complete testing guide for the luxury fashion e-commerce platform.
 
 ### Admin User
 - **Email:** admin@raana.com
-- **Password:** admin123
+- **Password:** Admin123!
 - **Role:** Administrator (full access)
 
 ### Regular Customer
@@ -37,7 +37,7 @@ POST /api/auth/register
 POST /api/auth/login
 {
   "email": "admin@raana.com",
-  "password": "admin123"
+  "password": "Admin123!"
 }
 ```
 
@@ -91,7 +91,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 # Login user
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@raana.com","password":"admin123"}'
+  -d '{"email":"admin@raana.com","password":"Admin123!"}'
 ```
 
 ### Product Endpoints
@@ -253,4 +253,4 @@ ab -n 50 -c 5 -p login.json -T application/json http://localhost:5000/api/auth/l
 
 ---
 
-**Ready to test!** 🎉 
+**Ready to test!** 🎉

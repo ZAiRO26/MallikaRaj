@@ -109,9 +109,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
                     <button
                       onClick={() => {
                         onClose();
-                        window.history.pushState({}, '', '/checkout');
-                        // trigger hash change by dispatching popstate so App effect picks it up
-                        window.dispatchEvent(new PopStateEvent('popstate'));
+                        // Use React Router navigation instead of window.history
+                        window.location.href = '/checkout';
                       }}
                       className="flex-1 bg-black border border-transparent rounded-md py-3 px-4 text-base font-medium text-white hover:bg-gray-800"
                     >
@@ -128,4 +127,4 @@ const CartDrawer = ({ isOpen, onClose }) => {
   );
 };
 
-export default CartDrawer; 
+export default CartDrawer;
