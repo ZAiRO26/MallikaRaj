@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [
+        'https://zairoxshop.netlify.app',
         'https://your-netlify-site.netlify.app',
         'https://raana-luxury.netlify.app',
         /\.netlify\.app$/
